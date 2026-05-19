@@ -51,7 +51,7 @@ export default tseslint.config(
 
     rules: {
 
-      // ── TypeScript: Type Safety ─────────────────────────────────────────────
+      // ── TypeScript: Type Safety: currently off ─────────────────────────────────────────────
       '@typescript-eslint/no-explicit-any': 'off',
       '@typescript-eslint/no-unsafe-argument': 'off',
       '@typescript-eslint/no-unsafe-assignment': 'off',
@@ -64,7 +64,7 @@ export default tseslint.config(
       '@typescript-eslint/prefer-optional-chain': 'off',
       '@typescript-eslint/strict-boolean-expressions': 'off',
 
-      // ── TypeScript: Async / Promises ────────────────────────────────────────
+      // ── TypeScript: Async / Promises: currently off ────────────────────────────────────────
       '@typescript-eslint/no-floating-promises': 'off',
       '@typescript-eslint/no-misused-promises': 'off',
       '@typescript-eslint/await-thenable': 'off',
