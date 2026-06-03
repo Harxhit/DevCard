@@ -55,25 +55,23 @@ jobs:
         with:
           node-version: 22
 
-      - uses: pnpm/action-setup@v6.0.8
-
-      - run: pnpm install
+      - run: npm ci
 
       - name: Backend lint
         id: backend_lint
         continue-on-error: true                         
-        run: cd apps/backend && pnpm eslint ${{ needs.detect-changes.outputs.backendFiles }}
+        run: cd apps/backend && npx eslint ${{ needs.detect-changes.outputs.backendFiles }}
 
       - name: Backend test
         id: backend_test
         if: needs.detect-changes.outputs.backendTestFiles != ''  
         continue-on-error: true
-        run: cd apps/backend && pnpm test --passWithNoTests ${{ needs.detect-changes.outputs.backendTestFiles }}
+        run: cd apps/backend && npm test -- --passWithNoTests ${{ needs.detect-changes.outputs.backendTestFiles }}
 
       - name: Backend typecheck
         id: backend_typecheck
         continue-on-error: true
-        run: cd apps/backend && pnpm typecheck 
+        run: cd apps/backend && npm run typecheck 
 
       - name: Fail job if any check failed
         if: >
@@ -100,19 +98,17 @@ jobs:
         with:
           node-version: 22
 
-      - uses: pnpm/action-setup@v6.0.8
-
-      - run: pnpm install
+      - run: npm ci
 
       - name: Web check
         id: web_check
         continue-on-error: true
-        run: cd apps/web && pnpm check
+        run: cd apps/web && npm run lint
 
       - name: Web build
         id: web_build
         continue-on-error: true
-        run: cd apps/web && pnpm build
+        run: cd apps/web && npm run build
 
       - name: Fail job if any check failed
         if: >
@@ -138,20 +134,18 @@ jobs:
         with:
           node-version: 22
 
-      - uses: pnpm/action-setup@v6.0.8
-
-      - run: pnpm install
+      - run: npm ci
 
       - name: Mobile lint
         id: mobile_lint
         continue-on-error: true
-        run: cd apps/mobile && pnpm eslint ${{ needs.detect-changes.outputs.mobileFiles }}
+        run: cd apps/mobile && npx eslint ${{ needs.detect-changes.outputs.mobileFiles }}
 
       - name: Mobile test
         id: mobile_test
         if: needs.detect-changes.outputs.mobileTestFiles != ''
         continue-on-error: true
-        run: cd apps/mobile && pnpm test --passWithNoTests ${{ needs.detect-changes.outputs.mobileTestFiles }}
+        run: cd apps/mobile && npm test -- --passWithNoTests ${{ needs.detect-changes.outputs.mobileTestFiles }}
 
       - name: Fail job if any check failed
         if: >

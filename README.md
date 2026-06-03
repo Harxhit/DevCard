@@ -53,7 +53,7 @@ Each exchange is manual, error-prone, and slow. DevCard fixes this.
 ### Prerequisites
 
 - Node.js >= 20
-- pnpm >= 9
+- npm >= 10
 - Docker & Docker Compose
 - React Native development environment ([setup guide](https://reactnative.dev/docs/environment-setup))
 
@@ -65,7 +65,7 @@ git clone https://github.com/Dev-Card/DevCard.git
 cd devcard
 
 # Install dependencies
-pnpm install
+npm install
 
 # Start infrastructure (PostgreSQL + Redis)
 docker compose up -d
@@ -79,16 +79,16 @@ cp .env.example .env
 # Paste the generated values into your .env file. Never use placeholders in production.
 
 # Run database migrations
-pnpm db:migrate
+npm run db:migrate
 
 # Seed sample data
-pnpm db:seed
+npm run db:seed
 
 # Start the backend
-pnpm dev:backend
+npm run dev:backend
 
 # In another terminal — start the mobile app
-pnpm dev:mobile
+npm run dev:mobile
 ```
 
 ## Architecture
@@ -102,7 +102,7 @@ devcard/
 ├── packages/
 │   └── shared/           # Shared types, platform registry, utils
 ├── docker-compose.yml    # PostgreSQL + Redis
-└── pnpm-workspace.yaml   # Monorepo config
+└── package-lock.json      # npm dependency lockfile
 ```
 
 ### Tech Stack
