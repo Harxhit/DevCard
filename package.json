@@ -5,27 +5,35 @@
   "description": "One Tap. Every Profile. Every Platform. Open Source Developer Profile Exchange Platform.",
   "license": "Apache-2.0",
   "scripts": {
-    "dev:backend": "pnpm --filter @devcard/backend dev",
-    "dev:mobile": "pnpm --filter @devcard/mobile start",
-    "dev:web": "npm --prefix apps/web run dev",
-    "build:backend": "pnpm --filter @devcard/backend build",
-    "build:web": "npm --prefix apps/web run build",
-    "test": "pnpm -r test",
-    "test:backend": "pnpm --filter @devcard/backend test",
-    "lint": "pnpm -r lint",
-    "db:migrate": "pnpm --filter @devcard/backend db:migrate",
-    "db:seed": "pnpm --filter @devcard/backend db:seed",
-    "db:studio": "pnpm --filter @devcard/backend db:studio",
-    "android": "pnpm --filter @devcard/mobile android",
-    "dev:android": "concurrently \"pnpm dev:mobile\" \"pnpm android\"",
-    "web": "npm --prefix apps/web run dev"
+    "dev:backend": "npm --workspace @devcard/backend run dev",
+    "dev:mobile": "npm --workspace @devcard/mobile run start",
+    "dev:web": "npm --workspace @devcard/web run dev",
+    "build": "npm run build --workspaces --if-present",
+    "build:backend": "npm --workspace @devcard/backend run build",
+    "build:web": "npm --workspace @devcard/web run build",
+    "test": "npm run test --workspaces --if-present",
+    "test:backend": "npm --workspace @devcard/backend run test",
+    "lint": "npm run lint --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "db:migrate": "npm --workspace @devcard/backend run db:migrate",
+    "db:seed": "npm --workspace @devcard/backend run db:seed",
+    "db:studio": "npm --workspace @devcard/backend run db:studio",
+    "android": "npm --workspace @devcard/mobile run android",
+    "dev:android": "concurrently \"npm run dev:mobile\" \"npm run android\"",
+    "web": "npm --workspace @devcard/web run dev"
   },
   "engines": {
     "node": ">=20.0.0",
-    "pnpm": ">=9.0.0"
+    "npm": ">=10.0.0"
   },
-  "packageManager": "pnpm@10.32.1+sha512.a706938f0e89ac1456b6563eab4edf1d1faf3368d1191fc5c59790e96dc918e4456ab2e67d613de1043d2e8c81f87303e6b40d4ffeca9df15ef1ad567348f2be",
+  "packageManager": "npm@10.9.4",
   "devDependencies": {
     "concurrently": "^9.2.1"
-  }
+  },
+  "workspaces": [
+    "apps/backend",
+    "apps/mobile",
+    "apps/web",
+    "packages/shared"
+  ]
 }
